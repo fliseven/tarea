@@ -1,124 +1,96 @@
-#include <iostream>
-#include <cstdlib>
+#include<iostream>
 #include<string.h>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
-void mostrarArray (char numero[])
-{
-	int i;
-	for(i=0;i<15;i++)
-	{
-		cout<<numero[i]<<endl;
-	}
-}
-void mostrar(int a[]){
 
-int i;
-for(i=0;i<=10;i++)
+void MostrarArray(int numeros[], int j)
 {
-	cout<<a[i]<<endl;
-}
-}
-void SacarBasura (char numero[],int contador)//elimina la basura que queda en las posiciones vacias
-{
-	int i;
-	for(i=contador;i<15;i++)
-	{
-		numero[i]='\0';
-	}
-}
-/*void Integrar(int Num_Array[])
-{
-	cout<<"el valor del polinomio integrado es:"<<endl;
-	cout<<"("<<Num_Array[0]<<"*x^"<<Num_Array[1]+1<<")/"<<Num_Array[1]+1<<"+"<<"("<<Num_Array[2]<<"*x^"<<Num_Array[3]+1<<")/"<<Num_Array[3]+1<<"+"<<Num_Array[4]<<"*x"<<endl; 
-}*/
-void Invertir_Array(int Num_Array[])
-{
-    int i, num_inv[10],j=0, digito;
-    int copia_numero[10];
-	for(i=0;i<=10; i++)
-	{
-		num_inv[i]=Num_Array[10-i];
-	}
-	//mostrar(num_inv);
-	//cout<<endl;
-	digito=num_inv[10];
-	//cout<<digito<<endl;
-	//cout<<endl;
-	for(i=0;i<10;i++)
-	{
-        if (num_inv[i]!=0)
-        {
-            copia_numero[j] = num_inv[i];
-            j++;
-        }
-    }
-
-
-    //mostrar(copia_numero);
-    cout<<"El prolonomio integrado es:"<<endl;
-    for(i=0;i<4;i++)
+    int i;
+    for(i=0;i<j;i++)
     {
-        
-    	cout<<"("<<copia_numero[i]<<"*x^"<<copia_numero[i+1]+1<<")/"<<copia_numero[i+1]+1;
-    	i++;
-    	cout<<"+";
-    	
+        cout<<numeros[i]<<endl;
     }
-    cout<<digito<<"*x"<<endl;
-    
 }
-void convertir (char numero[])//convierte el arreglo de char y lo guarda en una variable entera
+void Integrar (int numero[], int cantidad)
 {
-	int entero,i,Num_Array[10],var;
-	entero = atoi(numero);
-	for (i=0;i<10;i++)
+	if(cantidad==1)
 	{
-		var = entero%10;
-		Num_Array[i]=var;
-		entero= entero/10;
+		cout<<numero[0]<<"x"<<endl;
 	}
-	/*for(i=0;i<10;i++)
-	{
-		cout<<Num_Array[i]<<endl; //EL arreglo de los numeros pero ahora tipo int 
-	}*/
-	Invertir_Array(Num_Array);
-	//Integrar(Num_Array);
-	
-}
 
-void Separar (char expresion[],int cantidad)//separa los numeros de los caracteres
-{	
-	int i,j=0,contador=0;
-	char numero[15];
-	for (i=0;i<cantidad;i++)
+	if (cantidad == 2)
 	{
-		if (expresion[i] != '*' && expresion[i] != 'x' && expresion[i] != '^' && expresion[i]!= '+')
+		if(numero[1]==0)
 		{
-			contador++;
-			numero[j] = expresion[i];
-			j++;
-		}	
+			cout<<numero[0]<<"x"<<endl;
+		}
+		else{
+			cout<<"("<<numero[0]<<"x^"<<numero[1]+1<<")/"<<numero[1]+1<<endl;
+		}
 	}
-	SacarBasura(numero,contador);
-	//mostrarArray(numero);
-	convertir(numero);	
-}
+	if (cantidad==4)
+	{
+		cout<<"("<<numero[0]<<"x^"<<numero[1]+1<<")/"<<numero[1]+1<<"+("<<numero[2]<<"x^"<<numero[3]+1<<")/"<<numero[3]+1<<endl;
+	}
+	if(cantidad == 5)
+	{
+		cout<<"("<<numero[0]<<"x^"<<numero[1]+1<<")/"<<numero[1]+1<<"+("<<numero[2]<<"x^"<<numero[3]+1<<")/"<<numero[3]+1<<"+"<<numero[4]<<"x"<<endl;
+	}
 
+	if(cantidad == 6)
+	{
+		cout<<"("<<numero[0]<<"x^"<<numero[1]+1<<")/"<<numero[1]+1<<"+("<<numero[2]<<"x^"<<numero[3]+1<<")/"<<numero[3]+1<<"+("<<numero[4]<<"x^"<<numero[5]+1<<")/"<<numero[5]+1<<endl;
+	}
+
+	if(cantidad==7)
+	{
+		cout<<"("<<numero[0]<<"x^"<<numero[1]+1<<")/"<<numero[1]+1<<"+("<<numero[2]<<"x^"<<numero[3]+1<<")/"<<numero[3]+1<<"+("<<numero[4]<<"x^"<<numero[5]+1<<")/"<<numero[5]+1<<"+"<<numero[6]<<"x"<<endl;
+	}
+	if(cantidad==8)
+	{
+		cout<<"("<<numero[0]<<"x^"<<numero[1]+1<<")/"<<numero[1]+1<<"+("<<numero[2]<<"x^"<<numero[3]+1<<")/"<<numero[3]+1<<"+("<<numero[4]<<"x^"<<numero[5]+1<<")/"<<numero[5]+1<<"+"<<numero[6]<<"x^"<<numero[7]+1<<")/"<<numero[7]+1<<endl;
+	}
+}
 int main (int argc, char *argv[])
 {
-	char expresion[15];
-	int valor,cantidad;
-	int salir=0;
+    if(strcmp(argv[1],"-v")!= 0)
+    {
 
+    char polinomio [100];
+    int arreglo[100],var;
+    char *puntero;
+    int i=0;
+    cout<<"Ingrese polinomio"<<endl;
+    cout<<"ejemplo : 1*x^2+3*x^0+x"<<endl;
+    cin>> polinomio;
+    puntero = strtok(polinomio, "*x^+");
+    while(puntero != NULL)
+    {
+        var = atoi(puntero);//transforma el char en un entero
+        arreglo[i] = var; //guarda en un arreglo de enteros para tener todos los numeros del polinomio
+        //cout<<"puntero "<<ends<<puntero<<endl;
+        puntero = strtok(NULL,"*x^+");
+        i++;
+    }
+    //MostrarArray(arreglo,i); //muestra el arreglo con solo los numeros del polinomio
+    Integrar(arreglo,i);
+    }
 
-	if (strcmp(argv[1],"-i" )!= 0)
+    	if (strcmp(argv[1],"-i" )!= 0)
 	{
+	    int salir=0;
 	    cout<<"nombre de los integantes"<< endl;
+	    cout<<endl<<;
 	    cout<<"Juan M. Cortez"<<endl;
+	    cout<<endl<<;
 	    cout<<"Felipe Alvarez Rojas"<<endl;
+	    cout<<endl<<;
 	    cout<<"Christopher Salvatierra"<<endl;
-	    time_t t = time(0);   // get time now
+	    cout<<endl<<;
+	    time_t t = time(0);
+	       // get time now
         struct tm * now = localtime( & t );
         cout << "Fecha de compilacion"<<endl;
         cout<<(now->tm_year + 1900) << '-'
@@ -127,20 +99,11 @@ int main (int argc, char *argv[])
          << endl;
         salir=1;
 	}
-	if(strcmp(argv[1],"-v")!= 0)
-    {
 
-	     cout<< "ingrese cadena"<<endl;
-	     cin>> expresion;
-	     cantidad = strlen(expresion);//cantidad de caracteres tiene la expresion
-	     Separar(expresion,cantidad);
-	//cout<<"la cantidad de caracteres es:"<<ends<<cantidad<<endl;
-    }
 
-	
     char ch;
 
-    cout<<"Ingrese cualquier letra para finalizar programa : ";
+    cout<<"Ingrese cualquier tecla para finalizar programa : ";
     do
     {
         cin.get(ch);
