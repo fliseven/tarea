@@ -137,5 +137,12 @@ int main (int argc, char *argv[])
 	//cout<<"la cantidad de caracteres es:"<<ends<<cantidad<<endl;
     }
 
-	system("pause");
+	
+    char ch;
+
+    cout<<"Ingrese cualquier letra para finalizar programa : ";
+    do
+    {
+        cin.get(ch);
+    } while (ch < 32);
 }
