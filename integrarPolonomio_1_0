@@ -15,6 +15,10 @@ void MostrarArray(int numeros[], int j)
 }
 void Integrar (int numero[], int cantidad)
 {
+        if(cantidad==0)
+	{cout<<"(x^2)/2"<<endl;
+	}
+	
 	if(cantidad==1)
 	{
 		cout<<numero[0]<<"x"<<endl;
@@ -29,6 +33,11 @@ void Integrar (int numero[], int cantidad)
 		else{
 			cout<<"("<<numero[0]<<"x^"<<numero[1]+1<<")/"<<numero[1]+1<<endl;
 		}
+	}
+	
+	if(cantidad==3)
+	{
+		cout<<"("<<numero[0]<<"x^"<<numero[1]+1<<")/"<<numero[1]+1<<"+"<<numero[2]<<"x"<<endl;
 	}
 	if (cantidad==4)
 	{
