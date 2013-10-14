@@ -105,14 +105,37 @@ void Separar (char expresion[],int cantidad)//separa los numeros de los caracter
 	convertir(numero);	
 }
 
-int main ()
+int main (int argc, char *argv[])
 {
 	char expresion[15];
-	int valor[15],cantidad;
-	cout<< "ingrese cadena"<<endl<<"ejemplo: 2*x^2+3*x^1+2"<<endl;
-	cin>> expresion;	
-	cantidad = strlen(expresion);//cantidad de caracteres tiene la expresion
-	Separar(expresion,cantidad);
+	int valor,cantidad;
+	int salir=0;
+
+
+	if (strcmp(argv[1],"-i" )!= 0)
+	{
+	    cout<<"nombre de los integantes"<< endl;
+	    cout<<"Juan M. Cortez"<<endl;
+	    cout<<"Felipe Alvarez Rojas"<<endl;
+	    cout<<"Christopher Salvatierra"<<endl;
+	    time_t t = time(0);   // get time now
+        struct tm * now = localtime( & t );
+        cout << "Fecha de compilacion"<<endl;
+        cout<<(now->tm_year + 1900) << '-'
+         << (now->tm_mon + 1) << '-'
+         <<  now->tm_mday
+         << endl;
+        salir=1;
+	}
+	if(strcmp(argv[1],"-v")!= 0)
+    {
+
+	     cout<< "ingrese cadena"<<endl;
+	     cin>> expresion;
+	     cantidad = strlen(expresion);//cantidad de caracteres tiene la expresion
+	     Separar(expresion,cantidad);
 	//cout<<"la cantidad de caracteres es:"<<ends<<cantidad<<endl;
+    }
+
 	system("pause");
 }
