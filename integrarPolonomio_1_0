@@ -91,13 +91,13 @@ int main (int argc, char *argv[])
 	{
 	    int salir=0;
 	    cout<<"nombre de los integantes"<< endl;
-	    cout<<endl<<;
+	    cout<<endl;
 	    cout<<"Juan M. Cortez"<<endl;
-	    cout<<endl<<;
+	    cout<<endl;
 	    cout<<"Felipe Alvarez Rojas"<<endl;
-	    cout<<endl<<;
+	    cout<<endl;
 	    cout<<"Christopher Salvatierra"<<endl;
-	    cout<<endl<<;
+	    cout<<endl;
 	    time_t t = time(0);
 	       // get time now
         struct tm * now = localtime( & t );
